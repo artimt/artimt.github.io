@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arti Tiwari — Primary Educator | Dubai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --sand: #f5efe6;
+      --cream: #faf7f2;
+      --terracotta: #c4704f;
+      --rust: #9e4a2a;
+      --deep: #1e1a16;
+      --mid: #4a3f35;
+      --muted: #8c7b6e;
+      --gold: #c9a96e;
+      --gold-light: #e8d4a8;
+      --teal: #3a7d6e;
+      --teal-light: #6ab5a3;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--deep);
+      overflow-x: hidden;
+    }
+
+    /* ---- NOISE TEXTURE OVERLAY ---- */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(196,112,79,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(58,125,110,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 5vw, 76px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-credentials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.55s;
+    }
+
+    .hero-bio {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.6);
+      max-width: 420px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.7s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.85s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--terracotta);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.1);
+      transition: left 0.3s ease;
+    }
+
+    .btn-primary:hover::before { left: 0; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,112,79,0.4); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Right */
+    .hero-right {
+      background: var(--sand);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 80% 20%, rgba(201,169,110,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(58,125,110,0.1) 0%, transparent 60%);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.6s;
+    }
+
+    .avatar-ring {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--terracotta), var(--teal));
+      padding: 3px;
+      position: relative;
+    }
+
+    .avatar-ring::after {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.3);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 300;
+      color: var(--terracotta);
+    }
+
+    /* Floating badges */
+    .badge {
+      position: absolute;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(30,26,22,0.12);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--mid);
+      white-space: nowrap;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .badge-1 { top: 10px; right: -20px; animation-delay: 0s; }
+    .badge-2 { bottom: 30px; left: -30px; animation-delay: 1.5s; }
+    .badge-3 { top: 50%; right: -40px; transform: translateY(-50%); animation-delay: 0.8s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .badge-3 { animation: float3 4s ease-in-out infinite 0.8s; }
+    @keyframes float3 {
+      0%, 100% { transform: translateY(-50%); }
+      50% { transform: translateY(calc(-50% - 8px)); }
+    }
+
+    .badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .badge-dot.teal { background: var(--teal); }
+    .badge-dot.gold { background: var(--gold); }
+
+    .stats-row {
+      display: flex;
+      gap: 32px;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--deep);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: rgba(30,26,22,0.12);
+      align-self: stretch;
+    }
+
+    /* ---- LOCATION BAR ---- */
+    .location-bar {
+      background: var(--terracotta);
+      padding: 16px 80px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      overflow: hidden;
+    }
+
+    .location-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .location-item svg { opacity: 0.8; }
+
+    /* ---- SECTION COMMON ---- */
+    section { padding: 100px 80px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--deep);
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    /* ---- ABOUT ---- */
+    .about-section {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-left {}
+
+    .about-text {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-bottom: 24px;
+    }
+
+    .about-highlight {
+      border-left: 3px solid var(--terracotta);
+      padding-left: 24px;
+      margin: 32px 0;
+    }
+
+    .about-highlight p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--mid);
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cert-card {
+      background: var(--cream);
+      padding: 20px;
+      border-radius: 2px;
+      border: 1px solid rgba(30,26,22,0.06);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .cert-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(30,26,22,0.08);
+    }
+
+    .cert-icon {
+      width: 36px; height: 36px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .cert-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--deep);
+      line-height: 1.4;
+    }
+
+    /* ---- EXPERIENCE ---- */
+    .experience-section {
+      background: var(--cream);
+    }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 64px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      position: relative;
+      padding-bottom: 48px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 186px;
+      top: 12px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--terracotta), transparent);
+    }
+
+    .timeline-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--muted);
+      text-align: right;
+      padding-top: 4px;
+      line-height: 1.5;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 176px;
+      top: 8px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      border: 3px solid var(--cream);
+      z-index: 1;
+    }
+
+    .timeline-dot.current {
+      background: var(--teal);
+      box-shadow: 0 0 0 4px rgba(58,125,110,0.2);
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(58,125,110,0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(58,125,110,0.1); }
+    }
+
+    .timeline-content {}
+
+    .timeline-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 4px;
+    }
+
+    .timeline-org {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--terracotta);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-org-badge {
+      background: var(--terracotta);
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--mid);
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      background: rgba(196,112,79,0.1);
+      color: var(--rust);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+
+    .tag.teal {
+      background: rgba(58,125,110,0.1);
+      color: var(--teal);
+    }
+
+    /* ---- SKILLS ---- */
+    .skills-section {
+      background: var(--deep);
+      padding: 100px 80px;
+    }
+
+    .skills-section .section-label { color: var(--gold); }
+    .skills-section .section-label::before { background: var(--gold); }
+    .skills-section .section-title { color: var(--white); }
+    .skills-section .section-title em { color: var(--gold); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .skill-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 32px;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(196,112,79,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(196,112,79,0.3);
+      transform: translateY(-4px);
+    }
+
+    .skill-card:hover::before { opacity: 1; }
+
+    .skill-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: rgba(201,169,110,0.15);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .skill-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .skill-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .skill-bar-wrap {
+      margin-top: 20px;
+      height: 2px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .skill-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      border-radius: 1px;
+      transform-origin: left;
+      animation: growBar 1.5s ease forwards;
+    }
+
+    @keyframes growBar {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    /* ---- EDUCATION ---- */
+    .education-section {
+      background: var(--sand);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .edu-card {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 2px;
+      position: relative;
+      border: 1px solid rgba(30,26,22,0.06);
+      transition: all 0.3s ease;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(30,26,22,0.1);
+    }
+
+    .edu-card-accent {
+      width: 48px;
+      height: 4px;
+      background: var(--terracotta);
+      margin-bottom: 24px;
+    }
+
+    .edu-card:nth-child(2) .edu-card-accent { background: var(--teal); }
+
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--deep);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .edu-field {
+      font-size: 14px;
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .edu-uni {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .edu-year {
+      display: inline-block;
+      background: var(--cream);
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--mid);
+      border-radius: 2px;
+      margin-top: 16px;
+    }
+
+    .awards-box {
+      background: var(--terracotta);
+      padding: 40px;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      grid-column: 1 / -1;
+    }
+
+    .awards-box::before {
+      content: '★';
+      position: absolute;
+      right: 40px;
+      top: 30px;
+      font-size: 120px;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+    }
+
+    .awards-box .section-label { color: rgba(255,255,255,0.6); }
+    .awards-box .section-label::before { background: rgba(255,255,255,0.6); }
+
+    .award-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .award-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ---- PHILOSOPHY ---- */
+    .philosophy-section {
+      background: var(--cream);
+      text-align: center;
+      padding: 120px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .philosophy-section::before {
+      content: '"';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 400px;
+      font-weight: 700;
+      color: rgba(196,112,79,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .philosophy-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--mid);
+      max-width: 900px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .philosophy-quote span { color: var(--terracotta); }
+
+    .philosophy-attr {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ---- CONTACT ---- */
+    .contact-section {
+      background: var(--deep);
+      padding: 100px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-section .section-label { color: var(--gold); }
+    .contact-section .section-label::before { background: var(--gold); }
+    .contact-section .section-title { color: var(--white); }
+    .contact-section .section-title em { color: var(--gold); }
+
+    .contact-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      margin-top: 24px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none;
+      color: var(--white);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .contact-link:hover {
+      background: rgba(196,112,79,0.1);
+      border-color: rgba(196,112,79,0.3);
+      transform: translateX(8px);
+    }
+
+    .contact-link-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-link-info {}
+    .contact-link-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .contact-link-value { font-size: 15px; font-weight: 400; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: #141210;
+      padding: 32px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 80px 40px; }
+      section { padding: 72px 40px; }
+      .about-section,
+      .education-section,
+      .contact-section { grid-template-columns: 1fr; gap: 48px; }
+      .exp-header { grid-template-columns: 1fr; gap: 0; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 130px 1fr; gap: 20px; }
+      .timeline-item::after { left: 136px; }
+      .timeline-dot { left: 126px; }
+      .location-bar { padding: 16px 40px; }
+      footer { padding: 24px 40px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .timeline-date { text-align: left; }
+      .timeline-item::after, .timeline-dot { display: none; }
+      .stats-row { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Educator · Mentor · Lifelong Learner</p>
+      <h1 class="hero-name">Arti<br /><em>Tiwari</em></h1>
+      <p class="hero-credentials">MA English · B.Ed · TET Certified · NCC-C</p>
+      <p class="hero-bio">
+        A dedicated primary educator with over 13 years of teaching experience, shaping young minds through student-centred learning, digital innovation, and holistic development.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:artimanitiwari@gmail.com" class="btn-primary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Get in Touch
+        </a>
+        <a href="https://www.linkedin.com/in/artimtiwari" target="_blank" class="btn-outline">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring">
+          <div class="avatar-inner">A</div>
+        </div>
+        <div class="badge badge-1">
+          <span class="badge-dot teal"></span>
+          Available in Dubai
+        </div>
+        <div class="badge badge-2">
+          <span class="badge-dot gold"></span>
+          TET Certified
+        </div>
+        <div class="badge badge-3">
+          <span class="badge-dot"></span>
+          NCC-C Holder
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number">13+</span>
+          <span class="stat-label">Years Teaching</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Core Subjects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Institutions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCATION BAR ============ -->
+  <div class="location-bar">
+    <div class="location-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Dubai, United Arab Emirates
+    </div>
+    <div class="location-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5.1 2 2 0 0 1 3.59 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg>
+      Currently at Delhi Private School
+    </div>
+    <div class="location-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Teaching since April 2011
+    </div>
+    <div class="location-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      M.A. English · B.Ed. · TET
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about-section reveal">
+    <div class="about-left">
+      <div class="section-label">Who I Am</div>
+      <h2 class="section-title">Passionate about<br /><em>every learner</em></h2>
+
+      <div class="about-highlight">
+        <p>Education isn't just what I do — it's who I am. I believe every child has the potential to shine with the right guidance.</p>
+      </div>
+
+      <p class="about-text">
+        With a Master's degree in English from Deendayal Upadhyay Gorakhpur University and a B.Ed. specialising in Elementary Education, I bring both academic rigour and practical classroom wisdom to every interaction.
+      </p>
+      <p class="about-text">
+        My journey has taken me from schools in India to the multicultural classrooms of Dubai, where I've embraced diverse learning needs and international curricula with enthusiasm and adaptability.
+      </p>
+    </div>
+
+    <div class="about-right">
+      <div style="margin-bottom:32px;">
+        <div class="section-label" style="margin-bottom:20px;">Certifications & Awards</div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-icon">🏆</div>
+            <div class="cert-name">Uttar Pradesh TET — Primary Level</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🎖️</div>
+            <div class="cert-name">NCC C Certificate — Highest Level</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🌐</div>
+            <div class="cert-name">Google Workspace for Education — Intermediate</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">⭐</div>
+            <div class="cert-name">Premium Teaching & Learning Features</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="experience-section">
+    <div class="exp-header reveal">
+      <div>
+        <div class="section-label">Career Journey</div>
+        <h2 class="section-title">Where I've<br /><em>made an impact</em></h2>
+      </div>
+      <div style="display:flex; align-items:flex-end;">
+        <p style="font-size:15px; font-weight:300; line-height:1.8; color:var(--muted);">
+          From primary classrooms in India to international schools in Dubai, each role has deepened my commitment to transformative, student-first education.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-date">Apr 2025<br/>— Present</div>
+        <div class="timeline-dot current"></div>
+        <div class="timeline-content">
+          <div class="timeline-role">Teacher Assistant</div>
+          <div class="timeline-org">
+            Delhi Private School, Dubai
+            <span class="timeline-org-badge">CURRENT</span>
+          </div>
+          <p class="timeline-desc">
+            Teaching core subjects including English, Mathematics, Science, and Social Studies. Designing engaging, activity-based lessons integrating technology and differentiated instruction. Leveraging Google Workspace, MS Teams, and interactive tools to enhance learning in a multicultural environment.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">English</span>
+            <span class="tag">Mathematics</span>
+            <span class="tag">Science</span>
+            <span class="tag teal">Google Workspace</span>
+            <span class="tag teal">MS Teams</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Sep 2017<br/>— May 2025</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-role">Primary Teacher</div>
+          <div class="timeline-org">Freelance · Self-Employed, UAE</div>
+          <p class="timeline-desc">
+            Delivered personalised learning experiences across all primary subjects for students of varied abilities and learning styles. Focused on student-centred methodologies, practical application, and critical thinking — making learning engaging and meaningful for every child.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Personalised Learning</span>
+            <span class="tag">Critical Thinking</span>
+            <span class="tag teal">All Primary Subjects</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Apr 2011<br/>— Jul 2016</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-role">Primary School Teacher</div>
+          <div class="timeline-org">Navjeevan Mission School, India</div>
+          <p class="timeline-desc">
+            Elevated student engagement through innovative teaching methodologies. Designed a comprehensive curriculum in English, Maths, Science, and Social Studies. Conducted regular assessments, collaborated with parents, and spearheaded extracurricular activities to foster creativity and teamwork.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Curriculum Design</span>
+            <span class="tag">Parent Engagement</span>
+            <span class="tag teal">Extracurriculars</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="skills-section">
+    <div class="reveal">
+      <div class="section-label">What I Bring</div>
+      <h2 class="section-title">Core Teaching<br /><em>Competencies</em></h2>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-number">01</div>
+        <div class="skill-title">Lesson Planning & Curriculum</div>
+        <p class="skill-desc">Designing engaging, standards-aligned lessons that differentiate for diverse learners and stimulate genuine curiosity.</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">02</div>
+        <div class="skill-title">Educational Technology</div>
+        <p class="skill-desc">Seamless integration of Google Workspace, MS Teams, and interactive digital tools to create dynamic hybrid learning environments.</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">03</div>
+        <div class="skill-title">Student Engagement</div>
+        <p class="skill-desc">Activity-based, inclusive approaches that ensure every student — regardless of background — feels seen, valued, and motivated.</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:97%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">04</div>
+        <div class="skill-title">Communication & Collaboration</div>
+        <p class="skill-desc">Building strong partnerships with parents, colleagues, and communities to create a cohesive network of support around each student.</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">05</div>
+        <div class="skill-title">Holistic Development</div>
+        <p class="skill-desc">Nurturing leadership, discipline, and teamwork — inspired by NCC training — alongside academic achievement for whole-child growth.</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-number">06</div>
+        <div class="skill-title">Multicultural Education</div>
+        <p class="skill-desc">Experienced in UAE's diverse classroom landscape — adapting teaching styles and content to celebrate different cultures and perspectives.</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="education-section reveal">
+    <div>
+      <div class="section-label">Academic Foundation</div>
+      <h2 class="section-title">Education &<br /><em>Credentials</em></h2>
+      <p style="font-size:15px; font-weight:300; line-height:1.8; color:var(--muted); margin-top:16px;">A strong academic background forms the bedrock of thoughtful, informed teaching.</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="edu-card">
+        <div class="edu-card-accent"></div>
+        <div class="edu-degree">Master of Arts</div>
+        <div class="edu-field">English Language & Literature</div>
+        <div class="edu-uni">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Deendayal Upadhyay Gorakhpur University
+        </div>
+        <span class="edu-year">2008 — 2010</span>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-card-accent"></div>
+        <div class="edu-degree">Bachelor of Education</div>
+        <div class="edu-field">Elementary Education & Teaching</div>
+        <div class="edu-uni">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Barkatullah Vishwavidyalaya
+        </div>
+        <span class="edu-year">2007 — 2008</span>
+      </div>
+    </div>
+
+    <div class="awards-box reveal">
+      <div class="section-label">Highest Honour</div>
+      <div class="award-name">NCC C Certificate</div>
+      <p class="award-desc">The highest level attainable in the National Cadet Corps — instilling exceptional leadership, discipline, and teamwork. This achievement deeply informs Arti's holistic teaching philosophy and commitment to whole-child development beyond the classroom.</p>
+    </div>
+  </section>
+
+  <!-- ============ PHILOSOPHY ============ -->
+  <section class="philosophy-section reveal">
+    <p class="philosophy-quote">
+      "Education is not the filling of a pail, but the <span>lighting of a fire.</span> Every student I teach carries a spark — my role is simply to help it glow."
+    </p>
+    <p class="philosophy-attr">— Arti Tiwari's Teaching Philosophy</p>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-section">
+    <div class="reveal">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Ready to <em>inspire</em><br />together?</h2>
+      <p class="contact-text">
+        Whether you're looking for a dedicated primary educator, want to discuss innovative teaching practices, or simply wish to connect — I'd love to hear from you.
+      </p>
+    </div>
+
+    <div class="contact-links reveal">
+      <a href="mailto:artimanitiwari@gmail.com" class="contact-link">
+        <div class="contact-link-icon">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        </div>
+        <div class="contact-link-info">
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">artimanitiwari@gmail.com</div>
+        </div>
+        <svg style="margin-left:auto; opacity:0.3;" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <a href="https://www.linkedin.com/in/artimtiwari" target="_blank" class="contact-link">
+        <div class="contact-link-icon" style="background:var(--teal);">
+          <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div class="contact-link-info">
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">linkedin.com/in/artimtiwari</div>
+        </div>
+        <svg style="margin-left:auto; opacity:0.3;" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <div class="contact-link" style="cursor:default;">
+        <div class="contact-link-icon" style="background:var(--gold);">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-link-info">
+          <div class="contact-link-label">Location</div>
+          <div class="contact-link-value">Dubai, United Arab Emirates</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-name">Arti Tiwari</div>
+    <div class="footer-copy">© 2025 · Primary Educator · Dubai, UAE</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${i * 0.05}s`;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Animate skill bars on scroll
+    const skillBars = document.querySelectorAll('.skill-bar');
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.3 });
+
+    skillBars.forEach(bar => {
+      bar.style.animationPlayState = 'paused';
+      barObserver.observe(bar);
+    });
+
+    // Counter animation for stats
+    function animateCount(el, target, duration = 1500) {
+      let start = 0;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + (el.dataset.suffix || '');
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const statNums = document.querySelectorAll('.stat-number');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const text = entry.target.textContent;
+          const num = parseInt(text);
+          const suffix = text.replace(/[0-9]/g, '');
+          entry.target.dataset.suffix = suffix;
+          animateCount(entry.target, num);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNums.forEach(el => statsObserver.observe(el));
+  </script>
+</body>
+</html>
